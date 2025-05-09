@@ -1,0 +1,46 @@
+{
+  "name": "negocio",
+  "version": "1.0.0",
+  "main": "electron/main.js",
+  "scripts": {
+    "electron": "electron electron/main.js",
+    "build": "npm run build:frontend && electron-builder",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "build": {
+    "appId": "com.tuempresa.puntodeventa",
+    "productName": "Punto de Venta",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "asar": false,
+    "files": [
+      "electron/**/*",
+      "backend/**/*",
+      "frontend/dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "backend",
+        "to": "backend"
+      },
+      {
+        "from": "backend/node_modules",
+        "to": "backend/node_modules"
+      },
+      {
+        "from": "node",
+        "to": "node"
+      }
+    ],
+    "win": {
+      "icon": "build/icons/icon.ico",
+      "target": "nsis"
+    }
+  },
+  "devDependencies": {
+    "electron": "^28.2.1",
+    "electron-builder": "^24.14.1"
+  }
+}
